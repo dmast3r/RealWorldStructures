@@ -5,10 +5,10 @@ from random import randint
 
 class BloomFilter:
   """
-  Creates a Bloom Filter with methods to add string and check if a string exists in the data structure.
-  It works by taking in input the size of the bloom filter, which represents the number of bits that we want to be
-  present and the expected number of items tbat we expect to insert in the bloom filter.
-  Using these two parameters, the implementation auto calculates the optimnal number of hash functions that would be needed.
+  This class creates a Bloom Filter with methods to add strings and check if a string exists in the data structure.
+  It requires as input the size of the bloom filter, which represents the number of bits present, and the expected number
+  of items that will be inserted into the bloom filter.
+  Using these two parameters, the implementation automatically calculates the optimal number of hash functions needed.
   """
   def __init__(self, size: int, expected_num_items: int):
     self.size = size
@@ -31,7 +31,7 @@ class BloomFilter:
   
   def add(self, key: str) -> None:
     """
-      Adds a key to the Bloom Filter
+      Adds a key to the Bloom Filter.
     """
     for hash_func in self.__hash_functions:
       byte_array_index, bit_position = self.__get_byte_array_index_and_pos(hash_func, key)
@@ -40,7 +40,7 @@ class BloomFilter:
 
   def exists(self, key: str) -> bool:
     """
-      Check if a key doesn't exist in the Bloom Filter, may give false positive but will never give false negative
+      Checks if a key exists in the Bloom Filter. This may yield false positives but will never yield a false negative.
     """
     for hash_func in self.__hash_functions:
       byte_array_index, bit_position = self.__get_byte_array_index_and_pos(hash_func, key)
